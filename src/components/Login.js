@@ -9,10 +9,19 @@ function Login({ setAuthToken }) {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  // Define your master email (should match the one in your backend master config)
+  const MASTER_EMAIL = "master@example.com"; // Change this to your actual master email
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${API_ENDPOINT}/auth/login`, { email, password });
+      let res;
+      // Check if the email entered is for the master account
+      if (email.toLowerCase() === MASTER_EMAIL.toLowerCase()) {
+        res = await axios.post(`${API_ENDPOINT}/master/login`, { email, password });
+      } else {
+        res = await axios.post(`${API_ENDPOINT}/auth/login`, { email, password });
+      }
       setAuthToken(res.data.token);
       navigate('/chat');
     } catch (err) {
@@ -24,8 +33,20 @@ function Login({ setAuthToken }) {
     <div>
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
-        <input type="email" placeholder="Email" value={email} onChange={(e)=> setEmail(e.target.value)} required />
-        <input type="password" placeholder="Password" value={password} onChange={(e)=> setPassword(e.target.value)} required />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e)=> setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e)=> setPassword(e.target.value)}
+          required
+        />
         <button type="submit" className="button">Login</button>
       </form>
       <a href="/forgot-password">Forgot Password?</a><br/>
