@@ -10,7 +10,7 @@ function Login({ setAuthToken }) {
   const navigate = useNavigate();
 
   // Define your master email (should match the one in your backend master config)
-  const MASTER_EMAIL = "master@example.com"; // Change this to your actual master email
+  const MASTER_EMAIL = "siddharthjagwan12@gmail.com"; // Change this to your actual master email
 
   const handleLogin = async (e) => {
     e.preventDefault();
