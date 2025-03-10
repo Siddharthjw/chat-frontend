@@ -1,6 +1,7 @@
-// frontend/src/components/Dashboard.js
+// src/components/Dashboard.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import { API_ENDPOINT } from '../apiConfig';
 
 function Dashboard({ token }) {
   const [profile, setProfile] = useState({
@@ -14,7 +15,7 @@ function Dashboard({ token }) {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put('http://localhost:5000/api/user/update', { ...profile, password }, {
+      const res = await axios.put(`${API_ENDPOINT}/user/update`, { ...profile, password }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert(res.data.message);
@@ -26,7 +27,7 @@ function Dashboard({ token }) {
   const handlePictureUpdate = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put('http://localhost:5000/api/user/update-picture', { profile_picture: profile.profile_picture }, {
+      const res = await axios.put(`${API_ENDPOINT}/user/update-picture`, { profile_picture: profile.profile_picture }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert(res.data.message);
@@ -43,11 +44,11 @@ function Dashboard({ token }) {
         <input type="email" placeholder="Email" value={profile.email} onChange={(e)=> setProfile({...profile, email: e.target.value})} required />
         <textarea placeholder="Bio" value={profile.bio} onChange={(e)=> setProfile({...profile, bio: e.target.value})}></textarea>
         <input type="password" placeholder="New Password" value={password} onChange={(e)=> setPassword(e.target.value)} />
-        <button type="submit">Update Profile</button>
+        <button type="submit" className="button">Update Profile</button>
       </form>
       <form onSubmit={handlePictureUpdate}>
         <input type="text" placeholder="Profile Picture URL" value={profile.profile_picture} onChange={(e)=> setProfile({...profile, profile_picture: e.target.value})} />
-        <button type="submit">Update Picture</button>
+        <button type="submit" className="button">Update Picture</button>
       </form>
     </div>
   );
