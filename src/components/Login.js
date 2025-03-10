@@ -25,8 +25,10 @@ function Login({ setAuthToken }) {
       setAuthToken(res.data.token);
       navigate('/chat');
     } catch (err) {
-      alert(err.response.data.message || 'Login failed');
-    }
+  const message = err.response?.data?.message || 'Login failed';
+  alert(message);
+}
+
   };
 
   return (
