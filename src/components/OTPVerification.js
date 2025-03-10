@@ -1,7 +1,8 @@
-// frontend/src/components/OTPVerification.js
+// src/components/OTPVerification.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_ENDPOINT } from '../apiConfig';
 
 function OTPVerification() {
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ function OTPVerification() {
   const handleVerify = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/verify-otp', { email, otp });
+      const res = await axios.post(`${API_ENDPOINT}/auth/verify-otp`, { email, otp });
       alert(res.data.message);
       navigate('/login');
     } catch (err) {
@@ -25,7 +26,7 @@ function OTPVerification() {
       <form onSubmit={handleVerify}>
         <input type="email" placeholder="Email" value={email} onChange={(e)=> setEmail(e.target.value)} required />
         <input type="text" placeholder="OTP" value={otp} onChange={(e)=> setOtp(e.target.value)} required />
-        <button type="submit">Verify</button>
+        <button type="submit" className="button">Verify</button>
       </form>
     </div>
   );
