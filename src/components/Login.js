@@ -1,7 +1,8 @@
-// frontend/src/components/Login.js
+// src/components/Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_ENDPOINT } from '../apiConfig';
 
 function Login({ setAuthToken }) {
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ function Login({ setAuthToken }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const res = await axios.post(`${API_ENDPOINT}/auth/login`, { email, password });
       setAuthToken(res.data.token);
       navigate('/chat');
     } catch (err) {
