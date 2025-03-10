@@ -10,7 +10,7 @@ function Login({ setAuthToken }) {
   const navigate = useNavigate();
 
   // Define your master email (should match the one in your backend master config)
-  const MASTER_EMAIL = "siddharthjagwan12@gmail.com"; // Change this to your actual master email
+  const MASTER_EMAIL = "master@example.com"; // Change this to your actual master email
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,30 +25,17 @@ function Login({ setAuthToken }) {
       setAuthToken(res.data.token);
       navigate('/chat');
     } catch (err) {
-  const message = err.response?.data?.message || 'Login failed';
-  alert(message);
-}
-
+      const message = err.response?.data?.message || 'Login failed';
+      alert(message);
+    }
   };
 
   return (
     <div>
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e)=> setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e)=> setPassword(e.target.value)}
-          required
-        />
+        <input type="email" placeholder="Email" value={email} onChange={(e)=> setEmail(e.target.value)} required />
+        <input type="password" placeholder="Password" value={password} onChange={(e)=> setPassword(e.target.value)} required />
         <button type="submit" className="button">Login</button>
       </form>
       <a href="/forgot-password">Forgot Password?</a><br/>
@@ -58,3 +45,4 @@ function Login({ setAuthToken }) {
 }
 
 export default Login;
+
