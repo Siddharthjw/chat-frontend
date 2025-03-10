@@ -1,7 +1,8 @@
-// frontend/src/components/Register.js
+// src/components/Register.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_ENDPOINT } from '../apiConfig';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -12,7 +13,7 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', { username, email, password });
+      const res = await axios.post(`${API_ENDPOINT}/auth/register`, { username, email, password });
       alert(res.data.message);
       navigate('/otp-verification');
     } catch (err) {
@@ -27,7 +28,7 @@ function Register() {
         <input type="text" placeholder="Username" value={username} onChange={(e)=> setUsername(e.target.value)} required />
         <input type="email" placeholder="Email" value={email} onChange={(e)=> setEmail(e.target.value)} required />
         <input type="password" placeholder="Password" value={password} onChange={(e)=> setPassword(e.target.value)} required />
-        <button type="submit">Register</button>
+        <button type="submit" className="button">Register</button>
       </form>
     </div>
   );
