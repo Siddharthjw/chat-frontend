@@ -1,38 +1,147 @@
-.App {
-  text-align: center;
+/* app.css */
+
+/* Import a futuristic font (e.g., Orbitron) */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root {
+  --primary-bg: #0d0d0d;           /* Deep space background */
+  --primary-text: #e0e0e0;         /* Light text for readability */
+  --accent-color: #00ffcc;         /* Neon accent */
+  --secondary-accent: #ff007f;     /* Additional neon highlight */
+  --border-color: rgba(255, 255, 255, 0.2);
+  --shadow-color: rgba(0, 255, 204, 0.5);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Orbitron', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background: var(--primary-bg);
+  color: var(--primary-text);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Container to center and pad content */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Navigation Bar */
+.navbar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.App-link {
-  color: #61dafb;
+.navbar a {
+  color: var(--primary-text);
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.navbar a:hover {
+  color: var(--accent-color);
+}
+
+/* Button Style */
+.button {
+  background: var(--accent-color);
+  border: none;
+  color: var(--primary-bg);
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.button:hover {
+  box-shadow: 0 0 15px var(--shadow-color);
+}
+
+/* Input Fields */
+.input-field {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  color: var(--primary-text);
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+}
+
+.input-field:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px var(--shadow-color);
+}
+
+/* Card Component */
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  backdrop-filter: blur(5px);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Chat History Container */
+.chat-history {
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* Neon Text Effect for Headers */
+.neon-text {
+  color: var(--primary-text);
+  text-shadow:
+    0 0 5px var(--accent-color),
+    0 0 10px var(--accent-color),
+    0 0 20px var(--secondary-accent),
+    0 0 40px var(--secondary-accent);
+}
+
+/* Futuristic Pulse Animation */
+@keyframes pulse {
+  0% {
+    text-shadow: 0 0 5px var(--accent-color);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    text-shadow: 0 0 20px var(--accent-color);
   }
+  100% {
+    text-shadow: 0 0 5px var(--accent-color);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Dark mode variations if needed */
+.dark-mode {
+  background: #121212;
+  color: #cccccc;
 }
